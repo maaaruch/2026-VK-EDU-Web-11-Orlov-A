@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вход — Вопросы и ответы</title>
+  <link rel="icon" href="static/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+  <header class="header mb-4">
+    <div class="container py-3 d-flex flex-wrap align-items-center gap-3">
+      <a class="logo" href="index.html">Вопросы и ответы</a>
+      <div class="header-search d-flex gap-2" role="search">
+        <label class="visually-hidden" for="search">Поиск вопросов</label>
+        <input class="form-control" id="search" name="q" type="search" placeholder="Поиск вопросов" maxlength="150">
+        <button class="btn btn-light" type="button">Найти</button>
+      </div>
+      <a class="btn btn-light" href="ask.html">Задать вопрос</a>
+      <div class="user-block d-flex align-items-center flex-wrap gap-3">
+<a href="login.html">Войти</a>
+<a href="signup.html">Регистрация</a>
+</div>
+    </div>
+  </header>
+  <div class="container flex-grow-1 mb-4">
+    <div class="row g-4">
+      <main class="col-lg-9">
+<h1 class="h2 mb-4">Вход</h1>
+<form class="card card-body form-panel">
+<div class="alert alert-danger" role="alert">Неверный логин или пароль.</div>
+<div class="mb-3">
+<label class="form-label" for="login">Логин</label>
+<input id="login" name="login" class="form-control" aria-describedby="login-hint" type="text" maxlength="30" value="" required>
+<div class="form-text" id="login-hint">Введите логин, указанный при регистрации.</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="password">Пароль</label>
+<input id="password" name="password" class="form-control" aria-describedby="password-hint" type="password" maxlength="128" value="" autocomplete="new-password" minlength="8" required>
+<div class="form-text" id="password-hint">Введите пароль. До 128 символов.</div>
+</div>
+<p>
+<a href="signup.html">Создать аккаунт</a>
+</p>
+<button type="button" class="btn btn-success align-self-start">Войти</button>
+</form>
+</main>
+      <aside class="col-lg-3" aria-label="Сообщество">
+<section class="mb-4">
+<h2 class="h4">Популярные теги</h2>
+<div class="d-flex flex-wrap gap-2">
+<a href="#" aria-disabled="true" class="badge">css</a>
+<a href="#" aria-disabled="true" class="badge">html</a>
+</div>
+</section>
+<section>
+<h2 class="h4">Лучшие участники</h2>
+<ul class="list-unstyled">
+<li>Алексей</li>
+<li>Мария</li>
+<li>Иван</li>
+</ul>
+</section>
+</aside>
+    </div>
+  </div>
+  <footer class="footer py-3">
+<div class="container">Вопросы и ответы · Учебный проект, 2026</div>
+</footer>
+</body>
+</html>
