@@ -1,0 +1,6 @@
+{% for question in questions %}
+  {% include 'questions/partials/question.html' %}
+{% empty %}
+  <p>Вопросов пока нет.</p>
+{% endfor %}
+{% include 'questions/partials/pagination.html' %}

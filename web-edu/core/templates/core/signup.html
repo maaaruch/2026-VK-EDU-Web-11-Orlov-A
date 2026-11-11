@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="h2 mb-4">Регистрация</h1>
+<form class="card card-body form-panel">
+<div class="alert alert-danger" role="alert">Не удалось зарегистрироваться. Проверьте поля.</div>
+<div class="mb-3">
+<label class="form-label" for="login">Логин</label>
+<input id="login" name="login" class="form-control" aria-describedby="login-hint" type="text" maxlength="30" value="" required>
+<div class="form-text" id="login-hint">До 30 символов.</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="email">Электронная почта</label>
+<input id="email" name="email" class="form-control is-invalid" aria-describedby="email-hint" aria-invalid="true" aria-errormessage="email-error" type="email" maxlength="150" value="student@" required>
+<div class="form-text" id="email-hint">Например, name@example.com</div>
+<div class="invalid-feedback" id="email-error">Введите корректный адрес электронной почты.</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="nickname">Никнейм</label>
+<input id="nickname" name="nickname" class="form-control" aria-describedby="nickname-hint" type="text" maxlength="30" value="" required>
+<div class="form-text" id="nickname-hint">Имя, которое будет видно рядом с вопросами. До 30 символов.</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="password">Пароль</label>
+<input id="password" name="password" class="form-control" aria-describedby="password-hint" type="password" maxlength="128" value="" autocomplete="new-password" minlength="8" required>
+<div class="form-text" id="password-hint">От 8 до 128 символов.</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="repeat-password">Повторите пароль</label>
+<input id="repeat-password" name="repeat-password" class="form-control" aria-describedby="repeat-password-hint" type="password" maxlength="128" value="" autocomplete="new-password" minlength="8" required>
+<div class="form-text" id="repeat-password-hint">Введите тот же пароль ещё раз.</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="avatar">Аватар</label>
+<input id="avatar" name="avatar" class="form-control" aria-describedby="avatar-hint" type="file" accept="image/png,image/jpeg">
+<div class="form-text" id="avatar-hint">Выберите изображение PNG или JPEG.</div>
+</div>
+<p>
+<a href="{% url 'core:login' %}">Уже есть аккаунт? Войти</a>
+</p>
+<button type="button" class="btn btn-success align-self-start">Зарегистрироваться</button>
+</form>
+
+{% endblock %}

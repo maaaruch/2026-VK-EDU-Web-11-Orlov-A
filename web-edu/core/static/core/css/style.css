@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "Tiny5";
+  src: url("../fonts/Tiny5.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Tiny5", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #debab1;
+  background: #015b76;
+}
+
+a { color: inherit; }
+a:hover { color: #fff; }
+
+.header, .footer { background: #186447; }
+.logo { font-size: 28px; text-decoration: none; }
+.header-search { flex: 1 1 240px; }
+.header-search input { min-width: 0; }
+.user-block { margin-left: auto; }
+.header-avatar { border-radius: 50%; object-fit: cover; }
+
+/* Сетка Bootstrap переносит правую колонку вниз на узком экране. */
+main, .question-content { min-width: 0; }
+.card { background: #debab1; color: #163c40; border: 0; }
+.card a:hover { color: #186447; }
+.question { display: flex; align-items: flex-start; gap: 20px; }
+.question-user { flex: 0 0 64px; }
+.question-content { flex: 1; overflow-wrap: anywhere; }
+.avatar { display: block; border-radius: 8px; object-fit: cover; }
+.vote { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 12px; }
+.vote .btn { width: 36px; font-size: 18px; line-height: 1; }
+.meta { font-size: 16px; color: #365357; }
+.badge { background: #debab1; color: #163c40; font-size: 18px; font-weight: 400; }
+.badge:hover { background: #fff; color: #163c40; }
+
+.form-panel { max-width: 720px; }
+.form-control, .btn { font-family: inherit; font-size: 18px; }
+.form-control { background-color: #fff9f4; }
+.form-text { color: #365357; font-size: 16px; }
+.invalid-feedback { color: #9d1631; font-size: 16px; }
+.btn-success { background-color: #186447; border-color: #186447; }
+.btn-light { background-color: #debab1; border-color: #debab1; color: #163c40; }
+.btn-outline-success { color: #186447; border-color: #186447; }
+.btn-outline-danger { color: #9d1631; border-color: #9d1631; }
+.form-check-input:checked { background-color: #186447; border-color: #186447; }
+.page-link { background-color: #debab1; color: #163c40; border-color: #186447; }
+.active > .page-link { background-color: #186447; border-color: #debab1; }
+.page-link:hover { background-color: #fff9f4; color: #163c40; }
+
+@media (max-width: 575px) {
+  .header-search { flex-basis: 100%; }
+  .user-block { margin-left: 0; }
+  .question { gap: 12px; padding: 12px; }
+  .question-user { flex-basis: 48px; }
+  .question-user .avatar { width: 48px; height: 48px; }
+  h2.h4 { font-size: 22px; }
+}

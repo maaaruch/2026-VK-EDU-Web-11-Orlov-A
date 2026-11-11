@@ -1,0 +1,11 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.sqlite3
+.idea/
+.vscode/
+.DS_Store
+.env
+/web-edu/media/
+/web-edu/static/

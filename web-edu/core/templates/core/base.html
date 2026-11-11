@@ -1,0 +1,61 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Вопросы и ответы{% endblock %}</title>
+  <link rel="icon" href="{% static 'core/img/favicon.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+  <header class="header mb-4">
+    <div class="container py-3 d-flex flex-wrap align-items-center gap-3">
+      <a class="logo" href="{% url 'questions:index' %}">Вопросы и ответы</a>
+      <div class="header-search d-flex gap-2" role="search">
+        <label class="visually-hidden" for="search">Поиск вопросов</label>
+        <input class="form-control" id="search" name="q" type="search" placeholder="Поиск вопросов" maxlength="150">
+        <button class="btn btn-light" type="button">Найти</button>
+      </div>
+      <a class="btn btn-light" href="{% url 'questions:ask' %}">Задать вопрос</a>
+      <div class="user-block d-flex align-items-center flex-wrap gap-3">
+{% if profile_page %}
+<img src="{% static 'core/img/alex.svg' %}" width="40" height="40" alt="Аватар Алексея">
+<span>Алексей · <a href="{% url 'core:profile' %}">Настройки</a></span>
+{% else %}
+<a href="{% url 'core:login' %}">Войти</a>
+<a href="{% url 'core:signup' %}">Регистрация</a>
+{% endif %}
+</div>
+    </div>
+  </header>
+  <div class="container flex-grow-1 mb-4">
+    <div class="row g-4">
+      <main class="col-lg-9">
+{% block content %}{% endblock %}
+</main>
+      <aside class="col-lg-3" aria-label="Сообщество">
+<section class="mb-4">
+<h2 class="h4">Популярные теги</h2>
+<div class="d-flex flex-wrap gap-2">
+<a href="{% url 'questions:tag' 'css' %}" class="badge">css</a>
+<a href="{% url 'questions:tag' 'html' %}" class="badge">html</a>
+</div>
+</section>
+<section>
+<h2 class="h4">Лучшие участники</h2>
+<ul class="list-unstyled">
+<li>Алексей</li>
+<li>Мария</li>
+<li>Иван</li>
+</ul>
+</section>
+</aside>
+    </div>
+  </div>
+  <footer class="footer py-3">
+<div class="container">Вопросы и ответы · Учебный проект, 2026</div>
+</footer>
+</body>
+</html>
