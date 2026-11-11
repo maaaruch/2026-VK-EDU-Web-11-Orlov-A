@@ -1,21 +1,37 @@
-# Вопросы и ответы
+# ДЗ 2
 
-Статическая вёрстка для ДЗ 1. HTML, CSS и Bootstrap.
+Сайт вопросов и ответов на Django.
 
-## Как открыть
+## Запуск
 
-Открыть `public/index.html` в браузере.
-Для автообновления при правках — открыть папку в VS Code и нажать **Go Live**.
-Нужно расширение Live Server.
+В папке проекта:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cd web-edu
+python manage.py runserver
+```
+
+Сайт откроется по адресу http://localhost:8000/.
+
+Можно запустить через Docker из папки проекта:
+
+```bash
+docker compose up --build
+```
+
+Остановить — `docker compose down`.
 
 ## Страницы
 
-- `public/base.html` — общий макет.
-- `public/index.html` — список вопросов.
-- `public/question.html` — вопрос, ответы и форма ответа.
-- `public/ask.html` — создание вопроса.
-- `public/login.html` — вход.
-- `public/signup.html` — регистрация.
-- `public/profile.html` — настройки профиля.
+- `/` — новые вопросы
+- `/hot/` — популярные вопросы
+- `/tag/css/` — вопросы по тегу
+- `/question/1/` — вопрос и ответы
+- `/ask/` — задать вопрос
+- `/login/` — вход
+- `/signup/` — регистрация
+- `/profile/` — профиль
 
-Пока это только вёрстка: поиск, вход и отправка форм не работают.
