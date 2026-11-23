@@ -1,0 +1,7 @@
+{% extends 'core/base.html' %}
+{% block title %}Популярные вопросы{% endblock %}
+{% block content %}
+<h1 class="h2 mb-4">Популярные вопросы</h1>
+<p><a href="{% url 'questions:index' %}">Новые вопросы</a> · <a href="{% url 'questions:hot' %}">Популярные вопросы</a></p>
+{% include 'questions/partials/list.html' %}
+{% endblock %}

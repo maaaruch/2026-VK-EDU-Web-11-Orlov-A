@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="h2 mb-4">Вход</h1>
+<form class="card card-body form-panel">
+<div class="alert alert-danger" role="alert">Неверный логин или пароль.</div>
+<div class="mb-3">
+<label class="form-label" for="login">Логин</label>
+<input id="login" name="login" class="form-control" aria-describedby="login-hint" type="text" maxlength="30" value="" required>
+<div class="form-text" id="login-hint">Введите логин, указанный при регистрации.</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="password">Пароль</label>
+<input id="password" name="password" class="form-control" aria-describedby="password-hint" type="password" maxlength="128" value="" autocomplete="new-password" minlength="8" required>
+<div class="form-text" id="password-hint">Введите пароль. До 128 символов.</div>
+</div>
+<p>
+<a href="{% url 'core:signup' %}">Создать аккаунт</a>
+</p>
+<button type="button" class="btn btn-success align-self-start">Войти</button>
+</form>
+
+{% endblock %}
