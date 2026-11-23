@@ -3,7 +3,7 @@
   <div class="card-body question">
     <div class="question-user">
       <img class="avatar" src="{% static 'core/img/alex.svg' %}" alt="Аватар автора" width="64" height="64">
-      <div class="vote"><button class="btn btn-sm btn-outline-success" type="button" aria-label="Нравится">+</button><span>{{ question.rating }}</span><button class="btn btn-sm btn-outline-danger" type="button" aria-label="Не нравится">−</button></div>
+      <div class="vote"><button class="btn btn-sm btn-outline-success{% if question.vote == 1 %} active{% endif %}" type="button" aria-label="Нравится" aria-pressed="{% if question.vote == 1 %}true{% else %}false{% endif %}">+</button><span>{{ question.rating }}</span><button class="btn btn-sm btn-outline-danger{% if question.vote == -1 %} active{% endif %}" type="button" aria-label="Не нравится" aria-pressed="{% if question.vote == -1 %}true{% else %}false{% endif %}">−</button></div>
     </div>
     <div class="question-content">
       <h2 class="h4"><a href="{% url 'questions:question' question.id %}">{{ question.title }}</a></h2>

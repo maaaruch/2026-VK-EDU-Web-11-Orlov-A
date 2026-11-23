@@ -9,6 +9,7 @@ QUESTIONS_LIST = [
         'title': f'Вопрос {i}',
         'text': f'Текст вопроса {i}. ' * 10,
         'rating': i,
+        'vote': (0, 1, -1)[i % 3],
         'tags': ['html', 'css'] if i % 2 == 0 else ['python'],
         'answer_count': 12,
     } for i in range(1, 31)
@@ -55,7 +56,7 @@ def question(request, question_id):
     if question is None:
         raise Http404('Вопрос не найден')
     answers = [
-        {'text': f'Ответ {i} на вопрос {question_id}.', 'rating': 13 - i, 'correct': i == 1}
+        {'text': f'Ответ {i} на вопрос {question_id}.', 'rating': 13 - i, 'correct': i == 1, 'vote': (0, 1, -1)[i % 3]}
         for i in range(1, 13)
     ]
     page_obj = paginate(answers, request, 5)
