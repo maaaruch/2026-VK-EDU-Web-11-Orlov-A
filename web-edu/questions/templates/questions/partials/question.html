@@ -2,15 +2,15 @@
 <article class="card mb-3">
   <div class="card-body question">
     <div class="question-user">
-      <img class="avatar" src="{% static 'core/img/alex.svg' %}" alt="Аватар автора" width="64" height="64">
+      {% include 'core/avatar.html' with author=question.author %}
       <div class="vote"><button class="btn btn-sm btn-outline-success" type="button" aria-label="Нравится">+</button><span>{{ question.rating }}</span><button class="btn btn-sm btn-outline-danger" type="button" aria-label="Не нравится">−</button></div>
     </div>
     <div class="question-content">
-      <h2 class="h4"><a href="{% url 'questions:question' question.id %}">{{ question.title }}</a></h2>
+      <h2 class="h4"><a href="{{ question.get_absolute_url }}">{{ question.title }}</a></h2>
       <p>{{ question.text }}</p>
-      <p class="meta">Алексей · 11 ноября 2026</p>
-      <a href="{% url 'questions:question' question.id %}#answers">{{ question.answer_count }} ответов</a>
-      <span>Теги: {% for tag in question.tags %}<a href="{% url 'questions:tag' tag %}">{{ tag }}</a> {% endfor %}</span>
+      <p class="meta">{{ question.author.get_full_name|default:question.author.username }} · {{ question.created_at|date:"d.m.Y H:i" }}</p>
+      <a href="{{ question.get_absolute_url }}#answers">{{ question.answer_count }} ответов</a>
+      <span>Теги: {% for tag in question.tags.all %}<a href="{% url 'questions:tag' tag.name %}">{{ tag }}</a> {% endfor %}</span>
     </div>
   </div>
 </article>

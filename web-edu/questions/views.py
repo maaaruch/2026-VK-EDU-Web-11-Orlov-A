@@ -1,64 +1,31 @@
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from .models import Question, Answer, Tag
+from .pagination import paginate
 
 
-QUESTIONS_LIST = [
-    {
-        'id': i,
-        'title': f'Вопрос {i}',
-        'text': f'Текст вопроса {i}. ' * 10,
-        'rating': i,
-        'tags': ['html', 'css'] if i % 2 == 0 else ['python'],
-        'answer_count': 12,
-    } for i in range(1, 31)
-]
-
-
-def paginate(objects_list, request, per_page=10):
-    paginator = Paginator(objects_list, per_page)
-    try:
-        page = paginator.page(request.GET.get('page', 1))
-    except (PageNotAnInteger, EmptyPage):
-        page = paginator.page(1)
-    return page
+def question_list(request, queryset, template, **context):
+    page_obj = paginate(queryset, request)
+    return render(request, template, {
+        'questions': page_obj.object_list, 'page_obj': page_obj, **context,
+    })
 
 
 def index(request):
-    page_obj = paginate(QUESTIONS_LIST, request, 5)
-    return render(request, 'questions/index.html', {
-        'questions': page_obj.object_list, 'page_obj': page_obj,
-    })
+    return question_list(request, Question.objects.newest(), 'questions/index.html')
 
 
 def hot(request):
-    page_obj = paginate(QUESTIONS_LIST[::-1], request, 5)
-    return render(request, 'questions/hot.html', {
-        'questions': page_obj.object_list, 'page_obj': page_obj,
-    })
+    return question_list(request, Question.objects.popular(), 'questions/hot.html')
 
 
 def tag(request, tag):
-    questions = [question for question in QUESTIONS_LIST if tag in question['tags']]
-    page_obj = paginate(questions, request, 5)
-    return render(request, 'questions/tag.html', {
-        'questions': page_obj.object_list, 'page_obj': page_obj, 'tag': tag,
-    })
+    tag = get_object_or_404(Tag, name=tag)
+    return question_list(request, Question.objects.by_tag(tag), 'questions/tag.html', tag=tag)
 
 
 def question(request, question_id):
-    question = None
-    for item in QUESTIONS_LIST:
-        if item['id'] == question_id:
-            question = item
-            break
-    if question is None:
-        raise Http404('Вопрос не найден')
-    answers = [
-        {'text': f'Ответ {i} на вопрос {question_id}.', 'rating': 13 - i, 'correct': i == 1}
-        for i in range(1, 13)
-    ]
-    page_obj = paginate(answers, request, 5)
+    question = get_object_or_404(Question.objects.for_display(), pk=question_id)
+    page_obj = paginate(Answer.objects.for_question(question), request)
     return render(request, 'questions/question.html', {
         'question': question, 'answers': page_obj.object_list, 'page_obj': page_obj,
     })

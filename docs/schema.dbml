@@ -1,0 +1,67 @@
+Table auth_user {
+  id integer [pk, increment, not null]
+  username varchar(150) [unique, not null]
+  email varchar(254) [not null]
+}
+
+Table core_profile {
+  id bigint [pk, increment, not null]
+  user_id integer [unique, not null, ref: > auth_user.id]
+  avatar varchar(100) [not null]
+}
+
+Table questions_question {
+  id bigint [pk, increment, not null]
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  author_id integer [not null, ref: > auth_user.id]
+  title varchar(150) [not null]
+  text varchar(4095) [not null]
+  rating integer [not null]
+}
+
+Table questions_answer {
+  id bigint [pk, increment, not null]
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  author_id integer [not null, ref: > auth_user.id]
+  question_id bigint [not null, ref: > questions_question.id]
+  text varchar(4095) [not null]
+  is_correct boolean [not null]
+  rating integer [not null]
+}
+
+Table questions_tag {
+  id bigint [pk, increment, not null]
+  name varchar(50) [unique, not null]
+}
+
+Table questions_question_tags {
+  id bigint [pk, increment, not null]
+  question_id bigint [not null, ref: > questions_question.id]
+  tag_id bigint [not null, ref: > questions_tag.id]
+  indexes {
+    (question_id, tag_id) [unique]
+  }
+}
+
+Table questions_questionlike {
+  id bigint [pk, increment, not null]
+  user_id integer [not null, ref: > auth_user.id]
+  question_id bigint [not null, ref: > questions_question.id]
+  value smallint [not null, note: 'CHECK: value IN (-1, 1)']
+  indexes {
+    (user_id, question_id) [unique]
+  }
+}
+
+Table questions_answerlike {
+  id bigint [pk, increment, not null]
+  user_id integer [not null, ref: > auth_user.id]
+  answer_id bigint [not null, ref: > questions_answer.id]
+  value smallint [not null, note: 'CHECK: value IN (-1, 1)']
+  indexes {
+    (user_id, answer_id) [unique]
+  }
+}
+

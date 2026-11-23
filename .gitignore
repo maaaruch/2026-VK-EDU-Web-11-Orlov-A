@@ -9,3 +9,6 @@ __pycache__/
 .env
 /web-edu/media/
 /web-edu/static/
+
+.env.*
+!.env.example

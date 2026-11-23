@@ -6,21 +6,23 @@
 <h2 id="answers">Ответы</h2>
 {% for answer in answers %}
 <article class="card mb-3"><div class="card-body">
-<img src="{% static 'core/img/maria.svg' %}" alt="Аватар автора ответа" width="48" height="48">
+{% include 'core/avatar.html' with author=answer.author %}
 <p>{{ answer.text }}</p>
-<p class="meta">Мария · 11 ноября 2026</p>
+<p class="meta">{{ answer.author.get_full_name|default:answer.author.username }} · {{ answer.created_at|date:"d.m.Y H:i" }}</p>
 <div class="d-flex gap-2 mb-2"><button type="button" class="btn btn-sm btn-outline-success" aria-label="Нравится">+</button><span>{{ answer.rating }}</span><button type="button" class="btn btn-sm btn-outline-danger" aria-label="Не нравится">−</button></div>
-<label><input type="checkbox" {% if answer.correct %}checked{% endif %}> Правильный ответ</label>
+<label><input type="checkbox" disabled {% if answer.is_correct %}checked{% endif %}> Правильный ответ</label>
 </div></article>
+{% empty %}
+<p>Пока нет ни одного ответа к этому вопросу.</p>
 {% endfor %}
 {% include 'questions/partials/pagination.html' %}
 <h2 class="h3 mt-4">Ваш ответ</h2>
 <form class="card card-body form-panel">
 <div class="mb-3">
 <label class="form-label" for="answer">Текст ответа</label>
-<textarea id="answer" name="answer" class="form-control" aria-describedby="answer-hint" rows="6" maxlength="10000" required>
+<textarea id="answer" name="answer" class="form-control" aria-describedby="answer-hint" rows="6" maxlength="4095" required>
 </textarea>
-<div class="form-text" id="answer-hint">До 10 000 символов.</div>
+<div class="form-text" id="answer-hint">До 4095 символов.</div>
 </div>
 <button type="button" class="btn btn-success align-self-start">Ответить</button>
 </form>

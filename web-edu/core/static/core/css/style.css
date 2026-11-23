@@ -1,16 +1,9 @@
-@font-face {
-  font-family: "Tiny5";
-  src: url("../fonts/Tiny5.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
 body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: "Tiny5", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
   font-size: 18px;
   line-height: 1.6;
   color: #debab1;
@@ -38,11 +31,11 @@ main, .question-content { min-width: 0; }
 .vote { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 12px; }
 .vote .btn { width: 36px; font-size: 18px; line-height: 1; }
 .meta { font-size: 16px; color: #365357; }
-.badge { background: #debab1; color: #163c40; font-size: 18px; font-weight: 400; }
+.badge { background: #debab1; color: #163c40; font-size: 18px; font-weight: 600; }
 .badge:hover { background: #fff; color: #163c40; }
 
 .form-panel { max-width: 720px; }
-.form-control, .btn { font-family: inherit; font-size: 18px; }
+.form-control, .btn { font-family: inherit; font-size: 18px; font-weight: 600; }
 .form-control { background-color: #fff9f4; }
 .form-text { color: #365357; font-size: 16px; }
 .invalid-feedback { color: #9d1631; font-size: 16px; }
