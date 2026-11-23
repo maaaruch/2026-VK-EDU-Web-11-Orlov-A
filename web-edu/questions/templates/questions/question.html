@@ -9,7 +9,7 @@
 {% include 'core/avatar.html' with author=answer.author %}
 <p>{{ answer.text }}</p>
 <p class="meta">{{ answer.author.get_full_name|default:answer.author.username }} · {{ answer.created_at|date:"d.m.Y H:i" }}</p>
-<div class="d-flex gap-2 mb-2"><button type="button" class="btn btn-sm btn-outline-success" aria-label="Нравится">+</button><span>{{ answer.rating }}</span><button type="button" class="btn btn-sm btn-outline-danger" aria-label="Не нравится">−</button></div>
+<div class="d-flex gap-2 mb-2"><button type="button" class="btn btn-sm btn-outline-success{% if answer.vote == 1 %} active{% endif %}" aria-label="Нравится" aria-pressed="{% if answer.vote == 1 %}true{% else %}false{% endif %}">+</button><span>{{ answer.rating }}</span><button type="button" class="btn btn-sm btn-outline-danger{% if answer.vote == -1 %} active{% endif %}" aria-label="Не нравится" aria-pressed="{% if answer.vote == -1 %}true{% else %}false{% endif %}">−</button></div>
 <label><input type="checkbox" disabled {% if answer.is_correct %}checked{% endif %}> Правильный ответ</label>
 </div></article>
 {% empty %}
